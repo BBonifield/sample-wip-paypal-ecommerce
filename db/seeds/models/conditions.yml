@@ -1,0 +1,9 @@
+---
+  - name: New
+    sort_order: 1
+  - name: Used - Very Good
+    sort_order: 2
+  - name: Used - Good
+    sort_order: 3
+  - name: Used - Poor
+    sort_order: 4

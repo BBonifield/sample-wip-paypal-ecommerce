@@ -1,0 +1,6 @@
+#navigation-my-account-dropdown.navigation-dropdown
+  %h5
+    Signed in as:
+    #{current_user.user_name}
+  %p= link_to "Manage Your Account", account_path
+  %p= link_to "Sign Out", logout_path

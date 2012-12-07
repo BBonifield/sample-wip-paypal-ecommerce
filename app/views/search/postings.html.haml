@@ -1,0 +1,19 @@
+.clearfix
+  .pull-right
+    %h5 Can't find what you're looking for?
+    %p= link_to 'Post A New Item', new_posting_path(@serialized_search_params), :class => 'btn btn-inverse'
+  %h1
+    Postings similar to
+    = "'#{params[:search_string]}'"
+  %h5 Begin by selecting one that is similar to what you want to buy
+- if @results.any?
+  %p @todo Not in iteration 1
+  %ul
+    - @results.each do |posting|
+      %li
+        = posting.name
+        = link_to 'Post New Item Using This As Template', new_posting_path(:template_posting_id => posting.id)
+- else
+  .alert
+    So, nothing was found!  You can get started by
+    = link_to('posting a new item now', new_posting_path(@serialized_search_params)) + '.'

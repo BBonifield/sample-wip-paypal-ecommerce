@@ -1,0 +1,21 @@
+---
+  - first_name: Bob
+    last_name: Bonifield
+    user_name: "bbonifield"
+    email: bobbonifield@gmail.com
+    password: somePassword1!
+  - first_name: Clint
+    last_name: Montague
+    user_name: "cmontague"
+    email: clint.montague@gmail.com
+    password: somePassword1!
+  - first_name: Austin
+    last_name: Hong
+    user_name: "ahong"
+    email: austinhong113@hotmail.com
+    password: somePassword1!
+  - first_name: Shuo
+    last_name: Yang
+    user_name: "syang"
+    email: shuoyang6@gmail.com
+    password: somePassword1!

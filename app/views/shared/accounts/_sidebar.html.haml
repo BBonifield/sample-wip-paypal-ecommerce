@@ -1,0 +1,6 @@
+- content_for :sidebar do
+  %ul.nav.nav-list
+    %li.nav-header Account Information
+    = active_nav_item_when_current_page "Basic Details", account_path
+    = active_nav_item_when_current_page "Address Book", addresses_path
+    = active_nav_item_when_current_page "Change Password", change_password_account_path

@@ -1,0 +1,62 @@
+.totals-table {
+  font-weight: bold;
+  td {
+    border: 0;
+  }
+  td.label-cell {
+    text-align: right;
+  }
+  tfoot td {
+    border-top: 2px solid #000;
+  }
+}
+
+p.indented {
+  padding-left: 15px;
+}
+
+#print-receipt {
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  display: block;
+
+  .sprite-print {
+    display: inline-block;
+    margin-top: 10px;
+    .size( 37px, 38px );
+  }
+}
+
+.new-order-form {
+  font-size: 130%;
+  label {
+    font-size: inherit;
+  }
+
+  button#paypal_checkout {
+    border: 0;
+    background: transparent;
+  }
+
+  .address-preview {
+    display: none;
+  }
+}
+
+.orders-inventory-item-summary {
+  .item-thumbnail-block();
+  .expandable-content-container-block();
+
+  .right-body {
+    top: 40px;
+    font-weight: bold;
+
+    .item-price {
+      font-size: 120%;
+    }
+    .shipping-price {
+      font-size: 90%;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+Your Order Has Shipped
+-----------------------------
+
+Item Purchased:
+- Name: <%= @order.offer.inventory_item.name %>
+- Condition: <%= @order.offer.inventory_item.condition.name %>
+- <%= number_to_currency(@order.purchase.amount) %> - <%= l @order.created_at, :format => :short_date %>
+
+Shipped To:
+<%= @order.buyer.full_name %>
+<%= address_lines(@order.shipping_address).join("\n") %>
+
+Shipped Via:
+<%= @shipping_notification.shipping_service.name %> - <%= @order.offer.inventory_item.shipping_speed.name %>
+
+Tracking #:
+<%= @shipping_notification.tracking_number %>
+
+Questions about your order?  Please contact <%= @order.seller.full_name %>
+
+<% if @shipping_notification.note.present? %>
+A Note From <%= @order.seller.full_name %>:
+---
+<%= @shipping_notification.note %>
+---
+<% end %>
+
+If you were not involved in this transaction, please forward this e-mail to
+transactionservices@clintsboard.com, and we will investigate immediately.

@@ -1,0 +1,47 @@
+%h1 Delivery Complete
+
+%p
+  Sent your order?  Great!
+  Would you like to send a shipping notification to let the buyer know that it's on the way?
+
+= form_tag preview_shipped_seller_order_path(@order) do
+  %label.checkbox
+    = check_box_tag :send_shipping_notification, 1, params[:send_shipping_notification] == "1",
+      :class => 'send-shipping-notification'
+    %h5 Yes, Send A Shipping Notification Now
+  #shipping-notification-form-container
+    = render 'shared/form_errors', :object => @shipping_notification
+
+    .row.form-horizontal
+      .span7
+        .control-group
+          %label.control-label{ :for => 'shipping_notification_shipping_service_id' } Shipping Service
+          .controls
+            = select_tag 'shipping_notification[shipping_service_id]',
+              options_for_select(shipping_service_options, (params[:shipping_notification][:shipping_service_id] rescue nil))
+        .control-group
+          %label.control-label{ :for => 'shipping_notification_tracking_number' } Tracking Number
+          .controls
+            = text_field_tag 'shipping_notification[tracking_number]',
+              (params[:shipping_notification][:tracking_number] rescue nil)
+      .span5
+        %h4.centered Item Purchased
+        .orders-inventory-item-summary
+          = render 'shared/inventory_items/expandable_row/thumbnail',
+            :inventory_item => @order.offer.inventory_item
+          = render 'shared/inventory_items/expandable_row/body',
+            :inventory_item => @order.offer.inventory_item,
+            :expandable => false,
+            :totals_for_order => @order
+    .row
+      .span12
+        %label{ :for => 'shipping_notification_note' } Add a note (optional)
+        = text_area_tag 'shipping_notification[note]',
+          (params[:shipping_notification][:note] rescue nil),
+          :rows => 4
+
+  .form-actions
+    = button_tag '----', :type => 'submit',
+      :class => 'btn btn-primary pull-right',
+      :data => { 'send-notification-text' => 'Preview Notification',
+        'no-notification-text' => 'No, Just Mark It Shipped' }

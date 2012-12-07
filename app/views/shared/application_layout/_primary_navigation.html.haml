@@ -1,0 +1,18 @@
+.navbar#primary-navigation
+  .navbar-inner
+    %ul.nav
+      %li.accented= link_to "Start Selling", "#"
+      %li= link_to "Category 1", "#"
+      %li= link_to "Category 2", "#"
+      %li= link_to "Category 3", "#"
+      %li= link_to "Category 4", "#"
+      - if logged_in?
+        %li.accented.pull-right
+          = link_to "My Account", '#', :data => { :toggle => '#navigation-my-account-dropdown' }
+      - else
+        %li.accented.pull-right
+          = link_to "Sign In", '#', :data => { :toggle => '#navigation-sign-in-dropdown' }
+    - if logged_in?
+      = render 'shared/application_layout/my_account_dropdown'
+    - else
+      = render 'shared/application_layout/sign_in_dropdown'

@@ -1,0 +1,15 @@
+.row
+  .span8.offset2
+    %h4.centered= header
+    .expander-container.orders-inventory-item-summary
+      = render 'shared/inventory_items/expandable_row/thumbnail',
+        :inventory_item => inventory_item
+      = render 'shared/inventory_items/expandable_row/body',
+        :inventory_item => inventory_item
+
+      .right-body
+        .item-price Price #{number_to_currency @offer.price}
+        .shipping-price + #{number_to_currency inventory_item.shipping_cost} Shipping
+
+      = render 'shared/inventory_items/expandable_row/product_details_wrap',
+        :inventory_item => inventory_item

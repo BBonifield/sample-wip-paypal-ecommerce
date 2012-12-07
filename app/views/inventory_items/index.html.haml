@@ -1,0 +1,13 @@
+= render 'shared/inventory_items/sidebar'
+%h1
+  My Inventory
+  -# Show the filter group name if being filtered by a group
+  = " - #{@inventory_group.name}" if @inventory_group.present?
+  = link_to 'Add Item', new_inventory_item_path, :class => 'btn btn-inverse pull-right'
+- if @inventory_items.any?
+  #inventory-list
+    = render :partial => 'inventory_item', :collection => @inventory_items
+- else
+  .alert None found.
+.form-actions
+  = link_to 'Add Item', new_inventory_item_path, :class => 'btn btn-inverse pull-right'

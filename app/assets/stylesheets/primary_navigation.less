@@ -1,0 +1,71 @@
+@primaryNav_textColor: #E9F3FF;
+@primaryNav_textShadowColor: #1C2D3F;
+@primaryNav_hoverTextColor: #fff;
+
+.navbar#primary-navigation {
+  margin-bottom: 20px;
+  color: @primaryNav_textColor;
+  .navbar-inner {
+    #gradient > .vertical(@btnInverseBackground, @btnInverseBackgroundHighlight);
+  }
+
+  .navbar-inner {
+    max-height: 40px;
+  }
+
+  .nav {
+    width: auto;
+    float: none;
+    z-index: 100;
+
+    > li.accented {
+      a {
+        color: #fff;
+      }
+      #gradient > .vertical(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+      height: 50px;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      -webkit-box-shadow: 0px 3px 5px -2px #4F442D;
+              box-shadow: 0px 3px 5px -2px #4F442D;
+
+      &:hover {
+        background-color: @btnPrimaryBackground;
+        background-position: 0 15px;
+        .transition(background-position .1s linear);
+      }
+    }
+    > li.pull-right {
+      float: right;
+    }
+    > li > a {
+      color: @primaryNav_textColor;
+      font-weight: bold;
+      text-shadow: 0 1px 0 @primaryNav_textShadowColor;
+
+      &:hover {
+        color: @primaryNav_hoverTextColor;
+      }
+    }
+  }
+}
+
+.navigation-dropdown {
+  display: none;
+  position: absolute;
+  background: #fff;
+  -webkit-box-shadow: 0px 2px 5px -1px #4F442D;
+          box-shadow: 0px 2px 5px -1px #4F442D;
+  padding: 20px 10px 10px 10px;
+  color: #000;
+  border-top: 1px solid #CBCBCB;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  z-index: 50;
+}
+#navigation-sign-in-dropdown {
+  width: 400px;
+}
+#navigation-my-account-dropdown {
+  width: 300px;
+}

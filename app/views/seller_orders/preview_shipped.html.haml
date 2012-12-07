@@ -1,0 +1,57 @@
+%h1 Shipping Notification Preview
+
+%hr
+
+%h3 Your Order Has Shipped
+
+.row
+  .span7
+    %h4 Shipped To:
+    %p
+      = @order.buyer.full_name
+      = address_lines( @order.shipping_address ).join("<br/>").html_safe
+  .span5
+    .orders-inventory-item-summary
+      = render 'shared/inventory_items/expandable_row/thumbnail',
+        :inventory_item => @order.offer.inventory_item
+      = render 'shared/inventory_items/expandable_row/body',
+        :inventory_item => @order.offer.inventory_item,
+        :expandable => false,
+        :totals_for_order => @order
+
+%hr
+
+.row
+  .span2
+    = image_tag @shipping_notification.shipping_service.logo_file_name
+  .span5
+    %p
+      = @shipping_notification.shipping_service.name + ' - '
+      = @order.offer.inventory_item.shipping_speed.name
+    %p Tracking #: #{ @shipping_notification.tracking_number }
+  .span5
+    %p Questions about your order?
+    %p Please Contact: #{ link_to( @order.seller.full_name, '#' ) }
+
+- if @shipping_notification.note.present?
+  %hr
+
+  %h4 A note from #{ @order.seller.full_name }
+  %div= simple_format @shipping_notification.note
+
+%hr
+
+%p
+  If you were not involved in this transaction, please forward this email to
+  #{ link_to 'transactionservices@clintsboard.com', 'mailto:transactionservices@clintsboard.com' },
+  and we will investigate immediately.
+
+= form_tag confirm_shipped_seller_order_path(@order) do
+  -# Pass through all of the submitted form data from the previous step
+  = hidden_field_tag 'send_shipping_notification', params[:send_shipping_notification]
+  - shipping_notification_fields.each do |field|
+    = hidden_field_tag "shipping_notification[#{field}]",
+      ( params[:shipping_notification][field] rescue nil )
+  .form-controls
+    = button_tag 'Send Notification And Mark Shipped', :type => 'submit',
+      :class => 'btn btn-primary pull-right'

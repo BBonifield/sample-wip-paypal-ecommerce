@@ -1,0 +1,9 @@
+- content_for :sidebar do
+  %ul.nav.nav-list
+    %li.nav-header Inventory Groups
+    - user_inventory_groups.each do |group|
+      = active_nav_item_when_current_page group.name, group_filtered_inventory_items_path(group)
+    %li
+      = link_to '+ Add a Group', '#',
+        :id => 'new_inventory_group_link',
+        :data => { :create_url => inventory_groups_url }

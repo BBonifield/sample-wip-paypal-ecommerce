@@ -1,0 +1,9 @@
+%tr
+  %td= address.name
+  %td= address_lines(address).join("<br/>").html_safe
+  %td
+    = '<i class="icon-ok"></i> Default Shipping Address<br/>'.html_safe if address.is_default_shipping
+    = '<i class="icon-ok"></i> Default Billing Address<br/>'.html_safe if address.is_default_billing
+  %td
+    = link_to 'Edit', edit_address_path(address), :class => 'btn'
+    = link_to 'Delete', address, :method => 'delete', :class => 'btn btn-danger', :confirm => 'Are you sure?'

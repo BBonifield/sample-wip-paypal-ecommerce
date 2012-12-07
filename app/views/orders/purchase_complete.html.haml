@@ -1,0 +1,43 @@
+%h1 Purchase Complete!
+
+.row
+  .span5
+    %p
+      %strong Order #:
+      = @order.id
+    %p
+      %strong Date:
+      = l @order.created_at, :format => :short_date
+    %p
+      %strong Seller:
+      = @order.seller.full_name
+    %p
+      %strong Buyer:
+      = @order.buyer.full_name
+    %p
+      %strong Payment Method:
+      PayPal
+  .span5
+    %p
+      %strong Shipping Address:
+    %p.indented
+      = @order.buyer.full_name
+      %br
+      = address_lines(@order.shipping_address).join('<br/>').html_safe
+
+    %table.table.totals-table
+      %tr
+        %td.label-cell= @order.offer.inventory_item.name
+        %td= number_to_currency @order.offer.price
+      %tr
+        %td.label-cell Shipping
+        %td= number_to_currency @order.offer.inventory_item.shipping_cost
+      %tfoot
+        %tr
+          %td.label-cell Total
+          %td= number_to_currency @order.purchase.amount
+  .span2
+    %a#print-receipt{ :href => '#'}
+      %h4 Print Receipt
+      .sprite-print
+= render 'inventory_item', :inventory_item => @order.offer.inventory_item, :header => 'Your Purchase'

@@ -1,0 +1,45 @@
+%h3 Your Order Has Shipped
+
+%table
+  %tr
+    %td
+      %h4 Shipped To:
+      %p
+        = @order.buyer.full_name
+        = address_lines( @order.shipping_address ).join("<br/>").html_safe
+    %td
+      = render 'shared/inventory_items/expandable_row/thumbnail',
+        :inventory_item => @order.offer.inventory_item
+    %td
+      = render 'shared/inventory_items/expandable_row/body',
+        :inventory_item => @order.offer.inventory_item,
+        :expandable => false,
+        :totals_for_order => @order
+
+%hr
+
+%table
+  %tr
+    %td
+      = image_tag @shipping_notification.shipping_service.logo_file_name
+    %td
+      %p
+        = @shipping_notification.shipping_service.name + ' - '
+        = @order.offer.inventory_item.shipping_speed.name
+      %p Tracking #: #{ @shipping_notification.tracking_number }
+    %td
+      %p Questions about your order?
+      %p Please Contact: #{ link_to( @order.seller.full_name, '#' ) }
+
+- if @shipping_notification.note.present?
+  %hr
+
+  %h4 A note from #{ @order.seller.full_name }
+  %div= simple_format @shipping_notification.note
+
+%hr
+
+%p
+  If you were not involved in this transaction, please forward this email to
+  #{ link_to 'transactionservices@clintsboard.com', 'mailto:transactionservices@clintsboard.com' },
+  and we will investigate immediately.

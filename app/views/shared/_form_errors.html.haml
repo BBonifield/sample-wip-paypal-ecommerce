@@ -1,0 +1,7 @@
+- if object.errors.any?
+  .alert.alert-error
+    %h4 There was an error processing your request.
+    %p Please fix the errors below and try again.
+    %ul
+      - object.errors.full_messages.each do |error|
+        %li= error

@@ -1,0 +1,13 @@
+---
+  - name: DHL
+    logo_identifier: dhl
+    sort_order: 1
+  - name: FedEx
+    logo_identifier: fedex
+    sort_order: 2
+  - name: UPS
+    logo_identifier: ups
+    sort_order: 3
+  - name: USPS
+    logo_identifier: usps
+    sort_order: 4

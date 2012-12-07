@@ -1,0 +1,31 @@
+!!!
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %title= content_for?(:title) ? yield(:title) : "WIP"
+    :css
+      table { background: #fff; }
+      table td{border-collapse:collapse;}
+      h1, h2, h3, h4, h5 { color: #456F9C; }
+      .header { padding: 10px; }
+      .body { padding: 10px; }
+      .footer {
+        padding: 10px;
+        font-size: 10px;
+        font-weight: bold;
+      }
+
+  %body{ :leftmargin => 0, :marginwidth => 0, :topmargin => 0, :marginheight => 0, :offset => 0 }
+    %table
+      %thead
+        %tr
+          %td.header
+            = image_tag 'email_header-logo.png'
+      %tbody
+        %tr
+          %td.body
+            = yield
+      %tfoot
+        %tr
+          %td.footer
+            &copy; 2012 #{ link_to 'WIP', 'http://clintsboard.com' }

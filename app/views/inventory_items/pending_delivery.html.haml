@@ -1,0 +1,6 @@
+= render 'shared/inventory_items/sidebar'
+%h1 Items Pending Delivery
+
+#inventory-list
+  - @inventory_items.each do |inventory_item|
+    = render 'inventory_item_pending_delivery', :inventory_item => inventory_item

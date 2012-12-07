@@ -1,0 +1,122 @@
+/* item (posting and inventory) mixins */
+@itemBlockBorderColor: #E6E6E6;
+.item-block() {
+  background: #FAF9FA;
+  border: 1px solid @itemBlockBorderColor;
+  padding: 10px;
+  margin-bottom: 20px;
+  .border-radius(10px);
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: height 0.5s ease-in;
+
+  /* Highlight active items */
+  &.active {
+    .box-shadow(0 0 10px 2px #497DBB);
+  }
+
+  img {
+    border: 1px solid @itemBlockBorderColor;
+  }
+}
+
+.item-form-block() {
+  .item-block();
+  margin-top: 20px;
+
+  /* Override display block since form_for will wrap fields in this */
+  div.field_with_errors {
+    display: inline;
+  }
+
+  textarea {
+    width: 98%;
+  }
+
+  .add-photo {
+    width: 300px;
+    margin-right: 20px;
+    text-align: center;
+  }
+}
+
+@itemThumbnailRowHeight: 100px;
+.item-thumbnail-block() {
+  .item-block();
+  height: @itemThumbnailRowHeight;
+
+  > * {
+    position: absolute;
+    top: 10px;
+    height: @itemThumbnailRowHeight;
+  }
+
+  @thumbnailImageWidth: (4/3 * @itemThumbnailRowHeight);
+  .thumbnail-image {
+    left: 10px;
+    width: @thumbnailImageWidth;
+    text-align: center;
+  }
+
+  @bodyLeft: (@thumbnailImageWidth + 30);
+  .body {
+    left: @bodyLeft;
+    width: 320px;
+
+    font-weight: bold;
+
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  .right-body {
+    right: 10px;
+    width: 180px;
+
+    .bottom-buttons {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      .btn-danger {
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
+.expandable-content-container-block(){
+  font-size: 14px;
+
+  /* blocks of content that can be expanded, hidden by default */
+  .expandable-content {
+    display: none;
+    position: relative;
+    top: 120px;
+    left: 0;
+    margin: 0 10px;
+  }
+
+  /* product details expandable block */
+  .details-wrap {
+    .details {
+      padding: 5px;
+      border: 1px solid @grayDark;
+      height: 100px;
+      overflow: scroll;
+    }
+  }
+
+  /* container class when product details are expanded */
+  &.expanded-product-details {
+    height: 270px;
+
+    .show-details-wrap {
+      display: none;
+    }
+
+    .details-wrap {
+      display: block;
+    }
+  }
+}

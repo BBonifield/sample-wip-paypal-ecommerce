@@ -1,0 +1,57 @@
+%h1 Order Checkout
+
+= render 'shared/form_errors', :object => @order
+= form_for [@offer, @order], :html => { :class => 'new-order-form' } do |f|
+  %h4 Select Shipping Address
+  .row
+    .span9.form-inline
+      %p
+        = f.label :shipping_address_id, 'Use Existing Address:'
+        = f.select :shipping_address_id, address_options
+      %p or #{ link_to( 'Add A New One Now', '#', :class => 'add-new-address' ) }
+
+    .span3
+      .address-preview
+        %h4.address-name Home
+        %p.address-lines
+          820 Orman Dr.
+          %br
+          Boulder, CO 80303
+
+  .form-actions
+    = render 'inventory_item', :inventory_item => @offer.inventory_item, :header => 'You are about to buy this item:'
+
+    .row
+      .span6.offset4
+        %label.checkbox
+          = f.check_box :terms_and_conditions
+          I agree to the
+          = link_to 'terms and conditions', '#',
+            :data => { :toggle => 'modal', :target => '.terms-and-conditions-modal' }
+    .centered
+      %button#paypal_checkout{ :type => 'submit' }
+        = image_tag 'btn_paypal-checkout.png'
+
+
+
+.address-form-modal.modal.hide.fade
+  = twitter_bootstrap_form_for Address.new, :html => { :class => 'address-form' } do |f|
+    .modal-header
+      %button.close{ :data => { :dismiss => 'modal' } } &times;
+      %h3 Add New Address
+    .modal-body.form-horizontal
+      = f.text_field :name, :class => 'span4'
+      = f.text_field :address_1, :class => 'span4'
+      = f.text_field :address_2, :class => 'span4'
+      = f.text_field :city
+      = f.text_field :state, :class => 'span1'
+      = f.text_field :zip_code, :class => 'span2'
+    .modal-footer
+      = f.submit 'Create', :class => 'btn btn-primary pull-right'
+
+.terms-and-conditions-modal.modal.hide.fade
+  .modal-header
+    %button.close{ :data => { :dismiss => 'modal' } } &times;
+    %h3 Terms and Conditions
+  .modal-body.form-horizontal
+    @todo Terms and conditions go here.

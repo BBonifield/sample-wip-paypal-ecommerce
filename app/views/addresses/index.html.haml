@@ -1,0 +1,18 @@
+= render 'shared/accounts/sidebar'
+%h1
+  Address Book
+  = link_to 'Add Address', new_address_path, :class => 'btn btn-inverse pull-right'
+- if @addresses.empty?
+  %p You don't have any addresses in your Address Book.
+- else
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Address
+        %th &nbsp;
+        %th Actions
+    %tbody
+      = render :partial => "address", :collection => @addresses
+.form-actions
+  = link_to 'Add Address', new_address_path, :class => 'btn btn-inverse pull-right'

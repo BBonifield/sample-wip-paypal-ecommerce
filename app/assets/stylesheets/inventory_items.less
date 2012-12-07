@@ -1,0 +1,78 @@
+/* Index styles */
+#inventory-list {
+  margin-top: 20px;
+
+  .inventory-item {
+    .item-thumbnail-block();
+
+    .right-body {
+      .quantity-control {
+        .current-quantity {
+          position: relative;
+          top: 5px;
+          font-size: 200%;
+        }
+
+        > .btn {
+          position: absolute;
+          right: 35px;
+          width: 10px;
+          font-weight: bold;
+        }
+        .increment-quantity {
+          top: 0px;
+        }
+        .decrement-quantity {
+          top: 30px;
+        }
+      }
+    }
+  }
+
+  .inventory-item-pending-delivery {
+    .item-thumbnail-block();
+    .expandable-content-container-block();
+
+    /* class applied when delivery info should be visible */
+    &.expanded-delivery-info {
+      height: 270px;
+
+      .show-delivery-info {
+        display: none;
+      }
+      .delivery-info-wrap {
+        display: block;
+      }
+    }
+  }
+}
+
+
+/* Form styles */
+.inventory-form {
+  .item-form-block();
+
+  .top-controls {
+    .control-label {
+      width: 110px;
+    }
+    .controls {
+      margin-left: 130px;
+    }
+  }
+
+  .body {
+    margin-top: 12px;
+  }
+
+  .keyword {
+    margin-right: 50px;
+    margin-bottom: 20px;
+    .index {
+      font-weight: bold;
+      width: 10px;
+      margin-right: 10px;
+    }
+  }
+}
+

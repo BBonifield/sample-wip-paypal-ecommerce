@@ -1,0 +1,57 @@
+- if @inventory_item.errors.any?
+  .alert.alert-error
+    %h4 The following errors prevented your request from being processed:
+    %ul
+      - @inventory_item.errors.full_messages.each do |error|
+        %li= error
+
+.inventory-form.active
+  = form_for @inventory_item do |f|
+    %header.clearfix
+      .add-photo.pull-left
+        %div
+          - if @inventory_item.inventory_image?
+            = image_tag @inventory_item.inventory_image.form_thumb.url, :id => 'inventory-image'
+          - else
+            = image_tag 'http://placehold.it/200x150', :id => 'inventory-image'
+        %div
+          Upload Inventory Image:
+          = f.file_field :inventory_image
+          = f.hidden_field :inventory_image_cache
+      .top-controls.pull-left
+        .form-horizontal
+          .control-group
+            .control-label Name
+            .controls= f.text_field :name
+          .control-group
+            .control-label Inventory Group
+            .controls= f.select :inventory_group_id, user_inventory_group_options
+          .control-group
+            .control-label Category
+            .controls= f.select :category_id, category_options
+          .control-group
+            .control-label Condition
+            .controls= f.select :condition_id, condition_options
+        .form-inline
+          How many of this item are you selling?
+          = f.text_field :quantity, :class => 'span1'
+    .body.form-inline
+      .clearfix
+        .pull-left
+          Shipping Cost
+          .input-prepend
+            %span.add-on $
+            = f.text_field :shipping_cost, :class => 'span1'
+        .pull-right
+          Shipping Speeed:
+          = f.select :shipping_speed_id, shipping_speed_options
+      .details
+        %h5 Product Details
+        = f.text_area :details, :rows => 10
+      .keywords.form-inline.clearfix
+        %h5 Keywords
+        - (1..6).each do |keyword_i|
+          = render 'keyword_field', :keyword_index => keyword_i, :f => f
+    .form-actions
+      = f.submit 'Save', :class => 'btn btn-primary pull-right'
+

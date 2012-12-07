@@ -1,0 +1,7 @@
+.expandable-content.details-wrap
+  %p
+    %strong
+      Product Details:
+      = link_to '(Hide)', '#', :class => 'hide-product-details'
+  %div.details
+    = simple_format inventory_item.details

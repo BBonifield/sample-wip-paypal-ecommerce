@@ -1,0 +1,13 @@
+- expandable = true if local_assigns[:expandable].nil?
+- totals_for_order = nil if local_assigns[:totals_for_order].nil?
+
+.body
+  %p= inventory_item.name
+  %p Condition: #{inventory_item.condition.name}
+  %p Category: #{inventory_item.category.name}
+  - if expandable
+    %p.show-details-wrap= link_to 'Product Details', '#', :class => 'show-product-details'
+  - if totals_for_order.instance_of? Order
+    %p
+      = number_to_currency( @order.purchase.amount ) + ' - '
+      = l @order.created_at, :format => :short_date

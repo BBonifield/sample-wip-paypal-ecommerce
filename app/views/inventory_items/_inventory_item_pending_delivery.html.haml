@@ -1,0 +1,37 @@
+.expander-container.inventory-item-pending-delivery
+  = render 'shared/inventory_items/expandable_row/thumbnail',
+    :inventory_item => inventory_item
+  = render 'shared/inventory_items/expandable_row/body',
+    :inventory_item => inventory_item
+
+  .right-body
+    %strong= link_to '+ Show Delivery Info', '#', :class => 'show-delivery-info pull-right'
+    .bottom-buttons
+      = link_to 'Delivery Complete',
+        mark_shipped_seller_order_path(inventory_item.associated_order),
+        :class => 'btn btn-primary'
+
+  .expandable-content.delivery-info-wrap
+    %p
+      %strong
+        Delivery Info:
+        = link_to '(Hide)', '#', :class => 'hide-delivery-info'
+    %div.pull-left
+      %p
+        %strong Deliver Item To:
+        %br
+        = inventory_item.associated_order.buyer.full_name
+        %br
+        = address_lines(inventory_item.associated_order.shipping_address).join('<br/>').html_safe
+    %div.pull-right
+      %p
+        %strong Item Purchased By:
+        %br
+        = inventory_item.associated_order.buyer.user_name
+      %p
+        %strong Delivery Method:
+        %br
+        = inventory_item.shipping_speed.name
+
+  = render 'shared/inventory_items/expandable_row/product_details_wrap',
+    :inventory_item => inventory_item

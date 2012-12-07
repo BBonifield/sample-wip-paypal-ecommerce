@@ -1,0 +1,12 @@
+= render 'shared/postings/sidebar'
+%h1
+  My Postings
+  = link_to 'Add Posting', new_posting_path, :class => 'btn btn-inverse pull-right'
+%p @todo Not in iteration 1
+%ul
+  - @postings.each do |posting|
+    %li
+      = posting.name
+      = link_to 'Edit', edit_posting_path(posting)
+      = link_to 'Seed Offer For Posting', seed_offer_posting_path(posting)
+      = link_to 'Delete', posting, :method => :delete, :confirm => 'Are you sure?'

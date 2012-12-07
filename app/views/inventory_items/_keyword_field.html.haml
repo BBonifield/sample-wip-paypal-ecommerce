@@ -1,0 +1,4 @@
+- keyword_field_name = "keyword_#{keyword_index}".to_sym
+.keyword.pull-left
+  %span.index= keyword_index
+  = f.text_field keyword_field_name, :class => 'span2'

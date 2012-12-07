@@ -1,0 +1,11 @@
+---
+  - name: Shipping Speed 1
+    sort_order: 1
+  - name: Shipping Speed 2
+    sort_order: 2
+  - name: Shipping Speed 3
+    sort_order: 3
+  - name: Shipping Speed 4
+    sort_order: 4
+  - name: Shipping Speed 5
+    sort_order: 5

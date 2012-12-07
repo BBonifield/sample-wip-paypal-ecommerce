@@ -1,0 +1,9 @@
+= render 'shared/accounts/sidebar'
+%h1 Basic Account Details
+
+= render 'field_row', :field_label => 'User Name:', :field_value => current_user.user_name
+= render 'field_row', :field_label => 'Name:', :field_value => current_user.full_name
+= render 'field_row', :field_label => 'E-Mail:', :field_value => current_user.email
+
+.form-actions
+  = link_to 'Edit', edit_account_path, :class => 'btn btn-inverse pull-right'

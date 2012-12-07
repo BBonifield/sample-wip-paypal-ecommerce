@@ -1,0 +1,22 @@
+.row
+  .offset2.span8
+    %h1 Sign In To Your Account
+    %h4
+      Don't have an account yet?
+      = link_to "Create one now.", new_user_path
+    - if @login_failed
+      .alert.alert-error
+        %h4 There was an error processing your request.
+        %p The user name or password you provided was invalid.
+
+    = form_tag login_path, :class => 'form-horizontal', :id => 'session' do
+      .control-group
+        %label.control-label{ :for => "user_name_or_email" } User Name / E-Mail
+        .controls
+          = text_field_tag "user_name_or_email", params[:user_name_or_email], :placeholder => "user@domain.com"
+      .control-group
+        %label.control-label{ :for => "password" } Password
+        .controls
+          = password_field_tag "password"
+      .form-actions
+        = submit_tag "Sign In", :class => "btn btn-large btn-primary"

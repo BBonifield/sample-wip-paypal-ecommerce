@@ -1,0 +1,21 @@
+.inventory-item
+  .thumbnail-image= image_tag inventory_item.inventory_image.index_thumb.url
+
+  .body
+    %p= inventory_item.name
+    %p= "Condition: #{inventory_item.condition.name}"
+    %p= "Category: #{inventory_item.category.name}"
+
+  .right-body
+    .quantity-control
+      %h4
+        Quantity
+        %span.current-quantity= inventory_item.quantity
+      = link_to '+', increment_quantity_inventory_item_path(inventory_item), :class => 'increment-quantity btn btn-small'
+      = link_to '-', decrement_quantity_inventory_item_path(inventory_item), :class => 'decrement-quantity btn btn-small'
+    .bottom-buttons
+      = link_to 'Edit', edit_inventory_item_path(inventory_item),
+        :class => 'btn'
+      = link_to 'Delete', inventory_item,
+        :class => 'btn btn-danger',
+        :method => :delete, :confirm => 'Are you sure?'

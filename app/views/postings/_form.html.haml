@@ -1,0 +1,44 @@
+- if @posting.errors.any?
+  .alert.alert-error
+    %h4 The following errors prevented your request from being processed:
+    %ul
+      - @posting.errors.full_messages.each do |error|
+        %li= error
+
+.posting-form.active
+  = form_for @posting do |f|
+    %header.clearfix
+      .add-photo.pull-left
+        %div
+          - if @posting.posting_image?
+            = image_tag @posting.posting_image.form_thumb.url, :id => 'posting-image'
+          - else
+            = image_tag 'http://placehold.it/200x150', :id => 'posting-image'
+        %div
+          Upload Posting Image:
+          = f.file_field :posting_image
+          = f.hidden_field :posting_image_cache
+      .top-controls.pull-left
+        .form-horizontal
+          .control-group
+            .control-label Product Name
+            .controls= f.text_field :name
+          .control-group
+            .control-label Your Price
+            .controls
+              .input-prepend
+                %span.add-on $
+                = f.text_field :price, :class => 'span1'
+          .control-group
+            .control-label Category
+            .controls= f.select :category_id, category_options
+          .control-group
+            .control-label Condition
+            .controls= f.select :condition_id, condition_options
+    .body.form-inline
+      .details
+        %h5 Product Details
+        = f.text_area :details, :rows => 10
+    .form-actions
+      = f.submit 'Save', :class => 'btn btn-primary pull-right'
+
